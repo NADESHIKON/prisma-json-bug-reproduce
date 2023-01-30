@@ -4,7 +4,7 @@ specifiers:
   '@prisma/client': ^4.9.0
   '@types/node': ^18.11.18
   prisma: ^4.9.0
-  prisma-json-types-generator: ^2.1.0
+  prisma-json-types-generator: ^2.2.0
   ts-node: ^10.9.1
   typescript: ^4.9.4
 
@@ -14,7 +14,7 @@ dependencies:
 devDependencies:
   '@types/node': 18.11.18
   prisma: 4.9.0
-  prisma-json-types-generator: 2.1.0
+  prisma-json-types-generator: 2.2.0
   ts-node: 10.9.1_awa2wsr5thmg3i7jqycphctjfq
   typescript: 4.9.4
 
@@ -220,8 +220,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /prisma-json-types-generator/2.1.0:
-    resolution: {integrity: sha512-Qf0gFxantqZLOraOCpsGAmEdaIiu57i6lJq96VTKNiRce/3WF9VON5VC7uQ9Qz0nNk46Ds9ceBWA7XnCnCPuHg==}
+  /prisma-json-types-generator/2.2.0:
+    resolution: {integrity: sha512-w9OCkGA6KRN1bkbNqUCOsK/CGTwGfyYeHL+VTeGSy8Ip9PczsVOhs+kLX35dnHv8vyJTV0zU45Db4XWjqV7iZw==}
     engines: {node: '>=14.0'}
     hasBin: true
     dependencies:

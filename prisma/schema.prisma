@@ -15,10 +15,73 @@ generator json {
   provider = "prisma-json-types-generator"
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  /// [UserTitle]
-  title Json
+model Anime {
+  id                  String        @id @default(cuid())
+  slug                String?       @unique
+  coverImage          String?
+  bannerImage         String?
+  status              AiringStatus?
+  season              AiringSeason  @default(UNKNOWN)
+  /// [AnimeTitle]
+  title               Json
+  /// [AnimeExternalMapping]
+  mappings            Json          @default("{}")
+  currentEpisode      Int?
+  nextEpisodeAirDate  DateTime?
+  synonyms            String[]
+  countryOfOrigin     String?
+  lastEpisodeUpdate   DateTime?
+  seasonInt           Int?
+  description         String?
+  duration            Int?
+  color               String?
+  year                Int?
+  /// [AnimeRating]
+  rating              Json
+  /// [AnimePopularity]
+  popularity          Json
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  genre               String[]
+  linkedRelations     Relation[]    @relation("linkedRelations")
+  relations           Relation[]    @relation("relations")
+  /// [CheckedSourceTimestamps]
+  lastChecks          Json?
+
+  @@map("anime")
+}
+
+model Relation {
+  type    RelationType
+  animeId String
+  id      String       @id @default(cuid())
+  anime   Anime        @relation("linkedRelations", fields: [animeId], references: [id], onDelete: Cascade)
+  linked  Anime[]      @relation("relations")
+
+  @@unique([type, animeId])
+  @@map("relation")
+}
+
+enum RelationType {
+  PREQUEL
+  SEQUEL
+  PARENT
+  SIDE_STORY
+}
+
+
+enum AiringStatus {
+  FINISHED
+  RELEASING
+  NOT_YET_RELEASED
+  CANCELLED
+  HIATUS
+}
+
+enum AiringSeason {
+  UNKNOWN
+  SPRING
+  SUMMER
+  FALL
+  WINTER
 }
